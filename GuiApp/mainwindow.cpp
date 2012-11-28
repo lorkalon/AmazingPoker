@@ -17,6 +17,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
  qint32 countPlayers = 0;
+ int selectedRowIndex;
 
  void MainWindow::on_pushButton_clicked()
 {
@@ -36,4 +37,33 @@ void MainWindow::on_dial_actionTriggered(int action)
 {
    QString s = QString::number(action);
     ui->label->setText(s);
+}
+
+void MainWindow::on_playersTable_cellClicked(int row, int column)
+{
+    ui->playersTable->selectRow(row);
+    selectedRowIndex = row;
+    ui->name->setText(ui->playersTable->item(row, 0)->text());
+    ui->Surname->setText(ui->playersTable->item(row, 1)->text());
+    ui->Age->setText(ui->playersTable->item(row, 2)->text());
+}
+
+void MainWindow::on_Delete_Button_clicked()
+{
+    if(countPlayers!=0)
+    {
+      ui->playersTable->removeRow(selectedRowIndex);
+      --countPlayers;
+    }
+}
+
+void MainWindow::on_Clear_Button_clicked()
+{
+    if(countPlayers!=0)
+    {
+        ui->playersTable->clear();
+        ui->name->setText("");
+        ui->Surname->setText("");
+        ui->Age->setText("");
+    }
 }

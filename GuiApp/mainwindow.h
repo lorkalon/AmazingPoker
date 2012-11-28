@@ -20,6 +20,12 @@ private slots:
 
     void on_dial_actionTriggered(int action);
 
+    void on_playersTable_cellClicked(int row, int column);
+
+    void on_Delete_Button_clicked();
+
+    void on_Clear_Button_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
